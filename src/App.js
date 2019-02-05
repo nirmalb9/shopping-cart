@@ -12,7 +12,6 @@ import red from '@material-ui/core/colors/red';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Shopping from './components/Shopping'
-import ButtonAppBar from './components/appBar'
 
 const styles = {
   card: {
@@ -33,15 +32,18 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        {/*<header className="App-header">
-        </header>*/}
-        {console.log(this.state.data)}
-        <ButtonAppBar />
-        <Shopping products={this.state.data} />
-      </div>
-    );
+    if (this.state.data.length > 0){
+      return (
+        <div className="App">
+          <Shopping products={this.state.data} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+        </div>
+      )
+    }
   }
 
   componentDidMount(){

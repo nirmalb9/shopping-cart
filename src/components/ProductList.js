@@ -41,6 +41,7 @@ class ProductList extends Component {
                 <Grid item md={4}>
                   <ItemInfo
                     item = {product}
+                    addToCart = {this.props.addToCart}
                   />
                 </Grid>
             )}

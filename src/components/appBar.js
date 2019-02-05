@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Cart from './Cart';
 
 
 const styles = theme => ({
@@ -28,6 +29,8 @@ const styles = theme => ({
 
 function ButtonAppBar(props) {
   const { classes } = props;
+  const cart = props.cart;
+  console.log(cart);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -38,9 +41,7 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Welcome to Your Cart!
           </Typography>
-          <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
-            <AddShoppingCartIcon />
-          </IconButton>
+          <Cart cart = {cart} />
         </Toolbar>
       </AppBar>
     </div>

@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 
-const styles = {
+const styles = theme => ({
   card: {
     maxWidth: 345,
   },
@@ -23,15 +23,25 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
   },
-};
+});
 
-function ItemInfo (props){
-  const { classes } = props;
-  const name = props.item.title;
-  const price = props.item.price;
-  const product_sku = props.item.sku;
+class ItemInfo extends Component {
+  constructor(props){
+    super(props)
+    this.addToCart = this.addToCart.bind(this)
+  }
 
-  return(
+  addToCart(){
+    this.props.addToCart(this.props.item)
+  }
+
+  render(){
+    const { classes } = this.props;
+    const name = this.props.item.title;
+    const price = this.props.item.price;
+    const product_sku = this.props.item.sku;
+
+    return(
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -45,28 +55,13 @@ function ItemInfo (props){
           <Typography variant="subtitle1" color="colorPrimary">
             ${price}
           </Typography>
-          <Button variant="contained" color="primary">
+          <Button onClick={this.addToCart} variant="contained" color="primary">
             Add To Cart
           </Button>
         </div>
       </Card>
     );
-
-    // return (
-    //   <Card>
-    //     <tr>
-    //       <td>{name}</td>
-    //       <td>{price}</td>
-    //     </tr>
-    //
-    //     <Button variant="contained" color="primary">
-    //         Add To Cart
-    //     </Button>
-    //     <img
-    //       src={require(`./imgs/${product_sku}_1.jpg`)}
-    //     />
-    //   </Card>
-    // // );
+  }
 }
 
 ItemInfo.propTypes = {
