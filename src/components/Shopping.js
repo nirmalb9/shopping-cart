@@ -18,6 +18,7 @@ class Shopping extends Component {
     };
 
     this.addToCart = this.addToCart.bind(this)
+    this.removeFromCart = this.removeFromCart.bind(this)
   }
 
   addToCart(product){
@@ -36,6 +37,18 @@ class Shopping extends Component {
     })
   }
 
+  removeFromCart(product){
+    var next = [];
+    this.state.cart.map(item => {
+      if (item != product){
+        next.push(item);
+      }
+    })
+    this.setState({
+      cart: next,
+    })
+  }
+
 
 
   render() {
@@ -44,6 +57,7 @@ class Shopping extends Component {
       <div>
         <ButtonAppBar
           cart={this.state.cart}
+          removeFromCart={this.removeFromCart}
         />
         <ProductList
           products={this.props.products}

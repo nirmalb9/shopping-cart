@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 
-const styles = {
+const styles = theme => ({
   card: {
     minWidth: 300,
   },
@@ -29,30 +29,41 @@ const styles = {
   pos: {
     marginBottom: 12,
   },
-};
+});
 
-function CardProduct(props) {
-  const { classes } = props;
-  const name = props.name;
-  const price = props.price;
+class CardProduct extends Component {
+  constructor(props){
+    super(props)
+    this.removeFromCart = this.removeFromCart.bind(this)
+  }
 
-  return(
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography className = {classes.title} color="textSecondary" gutterBottom>
-          {name}
-        </Typography>
-        <Typography className = {classes.price} color="textSecondary" gutterBottom>
-          ${price}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <IconButton aria-label="Delete" className={classes.margin}>
-          <DeleteIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
+  removeFromCart(){
+    this.props.removeFromCart(this.props.item)
+  }
+
+  render(){
+    const { classes } = this.props;
+    const name = this.props.name;
+    const price = this.props.price;
+
+    return(
+      <Card className={classes.card}>
+        <CardContent>
+          <Typography className = {classes.title} color="textSecondary" gutterBottom>
+            {name}
+          </Typography>
+          <Typography className = {classes.price} color="textSecondary" gutterBottom>
+            ${price}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <IconButton onClick={this.removeFromCart} aria-label="Delete" className={classes.margin}>
+            <DeleteIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    );
+  }
 }
 
 CardProduct.propTypes = {

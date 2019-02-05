@@ -58,8 +58,10 @@ class Cart extends Component {
             {cart_items.length>0?
                 cart_items.map((item) =>
                   <CartProduct
+                    item = {item}
                     name = {item.title}
                     price = {item.price}
+                    removeFromCart={this.props.removeFromCart}
                   />
                 ) : null
               }

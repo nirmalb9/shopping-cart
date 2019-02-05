@@ -41,7 +41,7 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Welcome to Your Cart!
           </Typography>
-          <Cart cart = {cart} />
+          <Cart cart = {cart} removeFromCart={props.removeFromCart}/>
         </Toolbar>
       </AppBar>
     </div>
